@@ -3,15 +3,18 @@ info:
   title: Jobs API
   contact: {}
   version: '1.0'
+
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+
 servers:
-- url: https://temp-jobs-api-029y.onrender.com/api/v1
-  variables: {}
+  - url: https://temp-jobs-api-029y.onrender.com/api/v1
+    variables: {}
+
 paths:
   /auth/login:
     post:
       tags:
-      - Auth
+        - Auth
       summary: Login
       operationId: Login
       parameters: []
@@ -21,10 +24,10 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/LoginRequest'
-              - examples:
-                - email: nelly@gmail.com
-                  password: secret
+                - $ref: '#/components/schemas/LoginRequest'
+                - examples:
+                    - email: nelly@gmail.com
+                      password: secret
               contentMediaType: application/json
             example:
               email: nelly@gmail.com
@@ -37,10 +40,11 @@ paths:
       deprecated: false
       security: []
     parameters: []
+
   /auth/register:
     post:
       tags:
-      - Auth
+        - Auth
       summary: Register
       operationId: Register
       parameters: []
@@ -50,11 +54,11 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/RegisterRequest'
-              - examples:
-                - name: dumisani
-                  email: dumi@gmail.com
-                  password: secret668
+                - $ref: '#/components/schemas/RegisterRequest'
+                - examples:
+                    - name: dumisani
+                      email: dumi@gmail.com
+                      password: secret668
               contentMediaType: application/json
             example:
               name: dumisani
@@ -68,10 +72,11 @@ paths:
       deprecated: false
       security: []
     parameters: []
+
   /jobs:
     get:
       tags:
-      - Jobs
+        - Jobs
       summary: Get All Jobs
       operationId: GetAllJobs
       parameters: []
@@ -81,10 +86,11 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
+        - bearer: []
+
     post:
       tags:
-      - Jobs
+        - Jobs
       summary: Create Job
       operationId: CreateJob
       parameters: []
@@ -94,10 +100,10 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/CreateJobRequest'
-              - examples:
-                - company: random
-                  position: front end developer
+                - $ref: '#/components/schemas/CreateJobRequest'
+                - examples:
+                    - company: random
+                      position: front end developer
               contentMediaType: application/json
             example:
               company: random
@@ -109,9 +115,10 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
+        - bearer: []
     parameters: []
- /jobs/{id}:
+
+  /jobs/{id}:
     parameters:
       - in: path
         name: id
@@ -119,9 +126,10 @@ paths:
           type: string
         required: true
         description: The job ID
+
     get:
       tags:
-      - Jobs
+        - Jobs
       summary: Get Single Job
       operationId: GetSingleJob
       parameters: []
@@ -131,19 +139,11 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
-    parameters: []
- /jobs/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The job ID
+        - bearer: []
+
     patch:
       tags:
-      - Jobs
+        - Jobs
       summary: Update Job
       operationId: UpdateJob
       parameters: []
@@ -153,10 +153,10 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/UpdateJobRequest'
-              - examples:
-                - company: Transnet
-                  position: Programmer
+                - $ref: '#/components/schemas/UpdateJobRequest'
+                - examples:
+                    - company: Transnet
+                      position: Programmer
               contentMediaType: application/json
             example:
               company: Transnet
@@ -168,19 +168,11 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
-    parameters: []
-   /jobs/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The job ID
+        - bearer: []
+
     delete:
       tags:
-      - Jobs
+        - Jobs
       summary: Delete Job
       operationId: DeleteJob
       parameters: []
@@ -190,15 +182,16 @@ paths:
           headers: {}
       deprecated: false
       security:
-      - bearer: []
+        - bearer: []
     parameters: []
+
 components:
   schemas:
     LoginRequest:
       title: LoginRequest
       required:
-      - email
-      - password
+        - email
+        - password
       type: object
       properties:
         email:
@@ -206,14 +199,15 @@ components:
         password:
           type: string
       examples:
-      - email: nelly@gmail.com
-        password: secret
+        - email: nelly@gmail.com
+          password: secret
+
     RegisterRequest:
       title: RegisterRequest
       required:
-      - name
-      - email
-      - password
+        - name
+        - email
+        - password
       type: object
       properties:
         name:
@@ -223,14 +217,15 @@ components:
         password:
           type: string
       examples:
-      - name: dumisani
-        email: dumi@gmail.com
-        password: secret668
+        - name: dumisani
+          email: dumi@gmail.com
+          password: secret668
+
     CreateJobRequest:
       title: CreateJobRequest
       required:
-      - company
-      - position
+        - company
+        - position
       type: object
       properties:
         company:
@@ -238,13 +233,14 @@ components:
         position:
           type: string
       examples:
-      - company: random
-        position: front end developer
+        - company: random
+          position: front end developer
+
     UpdateJobRequest:
       title: UpdateJobRequest
       required:
-      - company
-      - position
+        - company
+        - position
       type: object
       properties:
         company:
@@ -252,13 +248,16 @@ components:
         position:
           type: string
       examples:
-      - company: Transnet
-        position: Programmer
+        - company: Transnet
+          position: Programmer
+
   securitySchemes:
     bearer:
       type: http
       scheme: bearer
+
 security: []
 
-- name: Jobs
-  description: ''
+tags:
+  - name: Jobs
+    description: ''
